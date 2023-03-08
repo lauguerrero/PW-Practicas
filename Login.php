@@ -23,9 +23,9 @@
                 <input type="submit" value="Acceder">
 
                 <?php
-                    $enlace = mysqli_connect ("127.0.0.1", "cursophp","" ,"lindavista");
+                    $enlace = mysqli_connect ("db4free.net", "adminpw","adminPW123" ,"thereuseshop");
 
-                    $consulta = mysqli_query ($enlace, "SELECT * FROM Usuario WHERE username = '$usuario' and contraseña = '$pwd'");
+                    $consulta = mysqli_query ($enlace, "SELECT * FROM Usuario WHERE username = '$usuario' and contrasena = '$pwd'");
 
                     if(mysqli_num_rows($consulta) != 0){ //usuario y contraseña validos
                         session_start();
