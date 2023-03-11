@@ -1,120 +1,36 @@
 <html>
     <head>
         <title>Anuncios</title>
-        <style>
-            /* Estilo de la tabla que tendrá todos los anuncios */
-            table.anuncios {
-                border-spacing: 50px;
-                margin-left: 0 auto;
-                margin-right: 0 auto;
-            }
-
-            /* Estilo de cada imagen dentro de la tabla con los anuncios */
-            img.anuncio {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                border: 1px solid black;
-            }
-
-            /* Estilo del texto debajo de cada imagen de la tabla con los anuncios */
-            div.anuncio {
-                font-family: Courier;
-                font-size: 20px;
-            }
-
-            /* Estilo de la barra de búsqueda superior */
-            input.search {
-                width: 300px;
-                padding: 10px;
-                border: none;
-                border-radius: 5px 0 0 5px;
-            }
-
-            /* Estilo de los botones para la búsqueda */
-            button.search {
-                padding: 10px;
-                border: none;
-                border-radius: 0 5px 5px 0;
-                background-color: #007bff;
-                color: #fff;
-                cursor: pointer;
-            }
-
-            /* Botón usuario */
-            .userbtn {
-                background-color: #4ea93b;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-            }
-
-            /* The container <div> - needed to position the dropdown content */
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
-
-            /* Dropdown Content (Hidden by Default) */
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                right: 0;
-                background-color: 92e27a;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-            /* Links inside the dropdown */
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-            /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {background-color: #92e27a;}
-
-            /* Show the dropdown menu on hover */
-            .dropdown:hover .dropdown-content {display: block;}
-
-            /* Change the background color of the dropdown button when the dropdown content is shown */
-            .dropdown:hover .dropbtn {background-color: #71c55b;}
-
-        </style>
+        <link rel="stylesheet" href="pagAnuncios.css">
     </head>
 
     <body>
-        <!--Prueba de comentario-->
-
-        <div>
+        <div class="upperbar-container">
             <div class="searchbar" style="float:left;">
                 <form id="form"> 
-                    <input class="search" type="search" id="query" name="q" size="50" placeholder="Buscar artículos...">
-                    <button class="search">Filtros</button>
-                    <button class="search" type="submit">Buscar</button>
+                    <input class="buscar" type="search" id="query" name="q" size="50" placeholder="Buscar artículos...">
+                    <button class="buscar">Filtros</button>
+                    <button class="buscar" type="submit">Buscar</button>
                 </form>
-            </div>
-
             </div>
 
             <div class="dropdown" style="float:right;">
                 <button class="userbtn">Usuario</button>
                 <div class="dropdown-content" style="float:left;">
-                    <a href="#">Mi Perfil</a>
-                    <a href="#">Lista Deseos</a>
-                    <a href="#" style="color: red">Cerrar Sesión</a>
+                    <a href="#">Mi Perfil</a> <!-- Habría que añadir el enlace a la página del perfil -->
+                    <a href="#">Lista Deseos</a> <!-- Habría que añadir el enlace a la página de la lista de deseos -->
+                    <a href="#" style="color: red">Cerrar Sesión</a> <!-- Habría que añadir el enlace para cerrar sesión -->
                 </div>
+            </div>
+
+            <div>
+                <button class="publicar" style="float:right;">Publicar</button>
             </div>
         </div>
 
-        <div>
+        <div class="table-container">
             <table class='anuncios'>
                 <?php
-                #Prueba de comentario
                     $servername = "db4free.net";
                     $username = "adminpw";
                     $password = "adminPW123";
@@ -122,18 +38,34 @@
     
                     $conexion = mysqli_connect($servername, $username, $password, $dbname) or die ("No se puede conectar con el servidor");
     
-                    $consulta = mysqli_query($conexion, "select * from Articulo") or die ("Fallo en la consulta");
+                    $consulta_articulos = mysqli_query($conexion, "select * from Articulo") or die ("Fallo en la consulta de Articulos");
                     
-                    $nfilas = mysqli_num_rows($consulta);
+                    $logged_user = "1"; #Supuesto ID del usuario loggeado
+
+                    $consulta_deseos = mysqli_query($conexion, "select id_Articulo from Deseos where id_Usuario=$logged_user") or die("Fallo en la consulta de Deseos");
+
+                    $lista_deseos = array();
+                    while($fila = mysqli_fetch_array($consulta_deseos)){
+                        $lista_deseos[] = $fila['id_Articulo'];
+                    }
+                    
+                    $nfilas = mysqli_num_rows($consulta_articulos);
                     for($i=0; $i<$nfilas; $i++){
-                        $fila = mysqli_fetch_array($consulta);
+                        $fila = mysqli_fetch_array($consulta_articulos);
                         if($i%4 == 0){
                             echo '</tr><tr>';
                         }
                         echo '<td><div>';
-                        echo '<a href="#"><img class="anuncio" height="250" width="200" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
+                        echo '<div class="add-listadeseados-container"><button class="add-listadeseados">';
+                        if(in_array($fila['Id_Articulo'], $lista_deseos)){
+                            echo 'En tu lista de deseos';
+                        }else{
+                            echo 'Añadir a tu lista de deseos';
+                        }
+                        echo '</button></div>';
+                        echo '<a href="#"><img class="anuncio" height="300" width="250" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
                         echo '<br>';
-                        echo '<a href="#"><div class="anuncio" align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>'; #Insetamos el nombre y el precio con el hipervínculo a la página del anuncio
+                        echo '<a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>'; #Insetamos el nombre y el precio con el hipervínculo a la página del anuncio
                         echo '</div></td>';
                     }
                 ?>
@@ -141,3 +73,18 @@
         </div>
     </body>
 </html>
+
+<!-- Estructura del código html dentro de cada celda
+<td>
+    <div>
+        <div class="add-listadeseados-container">
+            <button class="add-listadeseados">
+                MG
+            </button>
+        </div>
+        <a href="#"><img class="anuncio" height="250" width="200" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>
+        <br>
+        <a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>
+    </div>
+</td>
+-->
