@@ -34,7 +34,7 @@
                         
                     }
                     else{
-                        echo "El usuario o contraseña son incorrectos. Intentelo de nuevo."
+                        echo "El usuario o contraseña son incorrectos. Intentelo de nuevo.";
                     }
                     mysqli_free_result($consulta);
                     mysqli_close();
