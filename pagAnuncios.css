@@ -33,7 +33,7 @@ div.add-listadeseados-container {
 }
 
 /* Estilo del botón para añadir a la lista de deseados */
-button.add-listadeseados {
+.add-listadeseados {
     position:absolute;
     left: 5px;
     top: 5px;
