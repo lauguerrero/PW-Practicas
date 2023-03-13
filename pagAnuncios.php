@@ -44,12 +44,10 @@
 
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $id_articulo_deseos=$_POST["Id_Articulo"];
-                        $id_usuario_deseos=$_POST["Id_Usuario"];
-                        if($_POST["add-listadeseados"] == 'En tu lista de deseos'){ #En este caso significa que queremos eliminar el archivo de la lista de deseos
-                            $prueba = mysqli_query($conexion, "delete from Deseos where id_Articulo=$id_articulo_deseos and id_Usuario=$id_usuario_deseos");
-                            echo $prueba;
+                        if($_POST["add-listadeseados"] == 'delete'){ #En este caso significa que queremos eliminar el archivo de la lista de deseos
+                            mysqli_query($conexion, "delete from Deseos where id_Articulo=$id_articulo_deseos and id_Usuario=$logged_user");
                         }else{ #En este caso significa que queremos añadir el archivo a la lista de deseos
-                            echo "Queremos add";
+                            mysqli_query($conexion, "insert into Deseos values($logged_user, $id_articulo_deseos)");
                         }
                     }
 
@@ -62,7 +60,6 @@
                         $lista_deseos[] = $fila['id_Articulo'];
                     }
                     
-                    echo '<form method="post">';
                     $nfilas = mysqli_num_rows($consulta_articulos);
                     for($i=0; $i<$nfilas; $i++){
                         $fila = mysqli_fetch_array($consulta_articulos);
@@ -73,23 +70,25 @@
                         }
 
                         #Introducimos la imagen, el texto y los botones
+                        echo '<form method="post">';
                         echo '<td><div>';
                         echo '<div class="add-listadeseados-container">';
                         echo '<input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">';
-                        echo '<input type="hidden" name="Id_Usuario" value="'.$logged_user.'">';
-                        echo '<input type="submit" class="add-listadeseados" name="add-listadeseados" ';
+                        echo '<button type="submit" class="add-listadeseados" name="add-listadeseados"';
                         if(in_array($fila['Id_Articulo'], $lista_deseos)){
-                            echo 'value="En tu lista de deseos"';
+                            echo 'value="delete">En tu lista de deseos';
                         }else{
-                            echo 'value="Añadir a tu lista de deseos"';
+                            echo 'value="add">Añadir a tu lista de deseos';
                         }
-                        echo '></div>';
+                        #echo '<input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">';
+                        #echo '<input type="hidden" name="Id_Usuario" value="'.$logged_user.'">';
+                        echo '</button></div>';
                         echo '<a href="#"><img class="anuncio" height="300" width="250" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
                         echo '<br>';
                         echo '<a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>'; #Insetamos el nombre y el precio con el hipervínculo a la página del anuncio
                         echo '</div></td>';
+                        echo '</form>';
                     }
-                    echo '</form>';
                 ?>
             </table>
         </div>
@@ -97,16 +96,18 @@
 </html>
 
 <!-- Estructura del código html dentro de cada celda
-<td>
-    <div>
-        <div class="add-listadeseados-container">
-            <button class="add-listadeseados">
-                MG
-            </button>
+<form>
+    <td>
+        <div>
+            <div class="add-listadeseados-container">
+                <input type="submit" class="add-listadeseados" name="add-listadeseados" value="Añadir a tu lista de deseos">
+                <input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">
+                <input type="hidden" name="Id_Usuario" value="'.$logged_user.'">
+            </div>
+            <a href="#"><img class="anuncio" height="250" width="200" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>
+            <br>
+            <a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>
         </div>
-        <a href="#"><img class="anuncio" height="250" width="200" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>
-        <br>
-        <a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>
-    </div>
-</td>
+    </td>
+</form>
 -->
