@@ -19,46 +19,73 @@
         <section>
             <form action="Register.php" method="post">
                 <label for="usuario">Nombre de usuario</label>
-                <input type="text" name="usuario" size=8 maxlength=20 placeholder="Nombre de usuario" checked = "checked">
+                <input type="text" name="usuario" size=14 maxlength=20 placeholder="Nombre de usuario" checked = "checked">
+                <br>
+                <br>
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" size=8 maxlength=20 placeholder="Nombre"checked = "checked">
+                <br>
+                <br>
                 <label for="apellido">Apellido</label>
                 <input type="text" name="apellido" size=8 maxlength=20 placeholder="Apellido" checked = "checked">
+                <br>
+                <br>
                 <label for="telefono">Numero de Telefono</label>
-                <input type="number" name="telefono" size=8 maxlength=9 placeholder="Numero de telefono" checked = "checked">
+                <input type="number" name="telefono" size=5 maxlength=9 placeholder="Numero de telefono" checked = "checked">
+                <br>
+                <br>
                 <label for="email">Correo electronico</label>
-                <input type="text" name="email" size=8 maxlength=30 placeholder="Correo electronico" checked = "checked">
+                <input type="text" name="email" size=12 maxlength=30 placeholder="Correo electronico" checked = "checked">
+                <br>
+                <br>
                 <label for="password">Contraseña</label>
-                <input type="password" name="pwd" size="8" placeholder="Contraseña" maxlength="20">
+                <input type="password" name="pwd" size="13" placeholder="Contraseña" maxlength="20">
+                <br>
+                <br>
                 <label for="cpassword">Repetir contraseña</label>
-                <input type="cpassword" name="pwd" size="8" placeholder="Repetir contraseña" maxlength="20">
+                <input type="password" name="cpwd" size="13" placeholder="Repetir contraseña" maxlength="20">
+                <br>
+                <br>
                 <input type="submit" value="Acceder">
 
                 <?php
-                    $enlace = mysqli_connect ("db4free.net", "adminpw","adminPW123" ,"thereuseshop");
-
-                    $username = $_POST['usuario'];
-                    $nombre = $_POST['nombre'];
-                    $apellido = $_POST['apellido'];
-                    $telefono = $_POST['telefono'];
-                    $email = $_POST['email'];
-                    $password = md5($_POST['password']);
-                    $cpassword = md5($_POST['cpassword']);
-
-                    if($password == $cpassword){
-                        $consulta = "SELECT * FROM Usuario WHERE email='$email'";
-                        if(mysqli_num_rows($consulta) == 0){  //no existe ese email en la BD
-                            mysqli_query($enlace, "INSERT INTO Usuario(Nombre,Apellidos,Telefono,email,username, contrasena) VALUES ('".$nombre."','".$apellido."','".$telefono."','".$email."','".$username."','".$contrasena."',)");
-                            echo "<script>alert('Registrado con exito.')</script>";
+                    // Conexion con el servidor
+                    $servername = "db4free.net";
+                    $username = "adminpw";
+                    $password = "adminPW123";
+                    $dbname = "thereuseshop";
+                    // Crea la conexion
+                    $enlace = mysqli_connect($servername, $username, $password, $dbname);
+                    
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if(empty($_POST['usuario'])||empty($_POST['nombre'])||empty($_POST['apellido'])||empty($_POST['telefono'])
+                        ||empty($_POST['email'])||empty($_POST['pwd'])||empty($_POST['cpwd'])){
+                            echo '<script language="javascript">alert("Uno de los campos esta vacío, por favor rellenalos todos.";</script>';
                         }
                         else{
-                            echo "<script>alert('El correo ya existe.')</script>"; 
+                            $username = $_POST['usuario'];
+                            $nombre = $_POST['nombre'];
+                            $apellido = $_POST['apellido'];
+                            $telefono = $_POST['telefono'];
+                            $email = $_POST['email'];
+                            $password = md5($_POST['pwd']);
+                            $cpassword = md5($_POST['cpwd']);
+
+                            if($password == $cpassword){
+                                $consulta = mysqli_query($enlace,"SELECT * FROM Usuario WHERE username='$username'");
+                                if(mysqli_num_rows($consulta) == 0){  //no existe ese email en la BD
+                                    mysqli_query($enlace, "INSERT INTO Usuario(Nombre,Apellidos,Telefono,email,username, contrasena, esAdmin) VALUES ('$nombre','$apellido','$telefono','$email','$username','$password', '0')");
+                                    echo '<script language="javascript">alert("Registrado con exito.");</script>';
+                                }
+                                else{
+                                    echo '<script language="javascript">alert("El usuario ya existe.");</script>'; 
+                                }
+                            }
+                            else{
+                                echo '<script language="javascript">alert("Introduzca la misma contraseña.");</script>';
+                            }
                         }
                     }
-
-                    mysqli_free_result($consulta);
-                    mysqli_close();
-
                 ?>
             </form>
         </section>
