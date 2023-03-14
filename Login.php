@@ -48,7 +48,7 @@
                             if(mysqli_num_rows($consulta) === 1){ //usuario y contraseña validos
                                 $reg = mysqli_fetch_array($consulta);
                                 session_start();
-                                $_SESSION['id'] = $reg['Id_user'];
+                                $_SESSION['id'] = $reg['Id_Usuario'];
 
                                 header("location: Anuncios.php");
                             }

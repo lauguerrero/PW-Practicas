@@ -31,12 +31,14 @@
         <div class="table-container">
             <table class='anuncios'>
                 <?php
+                    session_start();
+
                     $servername = "db4free.net";
                     $username = "adminpw";
                     $password = "adminPW123";
                     $dbname = "thereuseshop";
 
-                    $logged_user = "1"; #Supuesto ID del usuario loggeado
+                    $logged_user = $_SESSION['id'];
     
                     $conexion = mysqli_connect($servername, $username, $password, $dbname) or die ("No se puede conectar con el servidor");
     
@@ -87,7 +89,7 @@
                         #echo '<input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">';
                         #echo '<input type="hidden" name="Id_Usuario" value="'.$logged_user.'">';
                         echo '</button></div>';
-                        echo '<a href="#"><img class="anuncio" height="300" width="250" src="./ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
+                        echo '<a href="#"><img class="anuncio" height="300" width="250" src="'.$fila['Imagen'].'"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
                         echo '<br>';
                         echo '<a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>'; #Insetamos el nombre y el precio con el hipervínculo a la página del anuncio
                         echo '</div></td>';
