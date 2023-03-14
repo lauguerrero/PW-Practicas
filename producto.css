@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+  
+h1 {
+    text-align: center;
+    color: #005200
+}
+  
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid #441fd7;
+}
+  
+td {
+    padding: 10px;
+    border: 1px solid #258d19;
+}
+  
+td:first-child {
+    width: 150px;
+}
+  
+td:last-child {
+    font-weight: bold;
+    text-align: center;
+}  
+
+.uno td {
+    color :rgb(0, 0, 0);
+
+}
+  
