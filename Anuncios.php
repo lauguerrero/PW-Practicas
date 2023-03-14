@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <button class="publicar" style="float:right;">Publicar</button>
+                <button class="publicar" style="float:right;"><a class="publicar" href="./publicar.html">Publicar</a></button>
             </div>
         </div>
 
@@ -76,8 +76,8 @@
                         }
 
                         #Introducimos la imagen, el texto y los botones
+                        echo '<td><div style="text-align: center;">';
                         echo '<form method="post">';
-                        echo '<td><div>';
                         echo '<div class="add-listadeseados-container">';
                         echo '<input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">';
                         echo '<button type="submit" class="add-listadeseados" name="add-listadeseados"';
@@ -86,14 +86,12 @@
                         }else{
                             echo 'value="add">Añadir a tu lista de deseos';
                         }
-                        #echo '<input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">';
-                        #echo '<input type="hidden" name="Id_Usuario" value="'.$logged_user.'">';
                         echo '</button></div>';
-                        echo '<a href="#"><img class="anuncio" height="300" width="250" src="'.$fila['Imagen'].'"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
-                        echo '<br>';
-                        echo '<a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>'; #Insetamos el nombre y el precio con el hipervínculo a la página del anuncio
-                        echo '</div></td>';
                         echo '</form>';
+                        echo '<form action="producto.php" method="get"><input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'"><input type="image" alt="Submit" class="imagen-anuncio" height="300" width="250" src="'.$fila['Imagen'].'">'; #Insertamos la imagen con el hipervínculo a la página del anuncio
+                        echo '<br>';
+                        echo '<button type="submit" class="texto-anuncio"><div class="texto-anuncio" align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></button></form>'; #Insertamos el nombre y el precio con el hipervínculo a la página del anuncio
+                        echo '</div></td>';
                     }
                 ?>
             </table>

@@ -12,7 +12,7 @@ table.anuncios {
 }
 
 /* Estilo de cada imagen dentro de la tabla con los anuncios */
-img.anuncio {
+.imagen-anuncio {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -20,8 +20,14 @@ img.anuncio {
 }
 
 /* Estilo del texto debajo de cada imagen de la tabla con los anuncios */
-a.texto-anuncio {
-    /*font-family: Courier;*/
+button.texto-anuncio {
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+/* Estilo del texto debajo de cada imagen de la tabla con los anuncios */
+div.texto-anuncio {
     font-size: 20px;
     text-decoration: none;
     color: #005c00;
@@ -51,6 +57,13 @@ button.publicar {
     border: none;
     border-radius: 5px 5px 5px 5px;
     margin-right: 5px;
+    text-decoration:none;
+}
+
+a.publicar {
+    color: white;
+    font-size: 16px;
+    text-decoration:none;
 }
 
 /* Container de la barra superior */
