@@ -26,7 +26,7 @@
 
     <?php
 
-        $id = 1;
+        $id = 4;
 
         // Comprobar si se han recibido datos
         /*if(isset($_GET['Id_Articulo'])){
@@ -52,28 +52,25 @@
 
         <?php
             echo "<tr class = uno>";
-                for($i = 0; $i < $articulo; $i++) {
-                        $foto = $articulo['Imagen'];
-                        echo "<td>";
-                            echo '<img src = "$foto">';
-                        echo "</td>";
+                
+                echo "<td>";
+                    echo $articulo['Imagen'];
+                echo "</td>";
 
-                        echo "<td rowspan = 2>";
-                            echo $articulo['Nombre'];
-                            echo "<br>";
-                            echo "<br>";
-                            echo 'Categoria: ' . $articulo['Tematica'];
-                            echo "<br>";
-                            echo "<br>";
-                            echo 'Precio: '. $articulo['Precio'] . '€';
-                        echo "</td>";
-
-                    $articulo = mysqli_fetch_array($sentencia);
-                }
+                echo "<td rowspan = 2>";
+                    echo $articulo['Nombre'];
+                    echo "<br>";
+                    echo "<br>";
+                    echo 'Categoria: ' . $articulo['Tematica'];
+                    echo "<br>";
+                    echo "<br>";
+                    echo 'Precio: '. $articulo['Precio'] . '€';
+                echo "</td>";
+                
             echo "</tr>";
 
             echo "<tr>";
-                $id = 1;
+                $id = 4;
 
                 // Comprobar si se han recibido datos
                 /*if(isset($_GET['Id_Articulo'])){
@@ -92,13 +89,11 @@
                 else{
                     $articulo = mysqli_fetch_array($sentencia);
                 }
-                for($i = 0; $i < $articulo; $i++) {
-                        echo "<td>";
-                            echo $articulo['Descripcion'];
-                        echo "</td>";
-
-                    $articulo = mysqli_fetch_array($sentencia);
-                }
+    
+                echo "<td>";
+                    echo $articulo['Descripcion'];
+                echo "</td>";
+            
             echo"</tr>";
 
         ?>
