@@ -53,8 +53,9 @@
         <?php
             echo "<tr class = uno>";
                 for($i = 0; $i < $articulo; $i++) {
+                        $foto = $articulo['Imagen'];
                         echo "<td>";
-                            echo $articulo['Imagen'];
+                            echo '<img src = "$foto">';
                         echo "</td>";
 
                         echo "<td rowspan = 2>";
