@@ -18,7 +18,7 @@
                 <button class="userbtn">Usuario</button>
                 <div class="dropdown-content" style="float:left;">
                     <a href="#">Mi Perfil</a> <!-- Habría que añadir el enlace a la página del perfil -->
-                    <a href="#">Lista Deseos</a> <!-- Habría que añadir el enlace a la página de la lista de deseos -->
+                    <a href="./ListaDeseos.php">Lista Deseos</a> <!-- Habría que añadir el enlace a la página de la lista de deseos -->
                     <a href="#" style="color: red">Cerrar Sesión</a> <!-- Habría que añadir el enlace para cerrar sesión -->
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         #echo '<input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'">';
                         #echo '<input type="hidden" name="Id_Usuario" value="'.$logged_user.'">';
                         echo '</button></div>';
-                        echo '<a href="#"><img class="anuncio" height="300" width="250" src="../ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
+                        echo '<a href="#"><img class="anuncio" height="300" width="250" src="./ImagenesArticulos/'.$fila['Imagen'].'.jpg"/></a>'; #Insertamos la imagen con el hipervínculo a la página del anuncio
                         echo '<br>';
                         echo '<a class="texto-anuncio" href="#"><div align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></a>'; #Insetamos el nombre y el precio con el hipervínculo a la página del anuncio
                         echo '</div></td>';
