@@ -73,7 +73,7 @@
 
                             if($password == $cpassword){
                                 $consulta = mysqli_query($enlace,"SELECT * FROM Usuario WHERE username='$username'");
-                                if(mysqli_num_rows($consulta) == 0){  //no existe ese email en la BD
+                                if(mysqli_num_rows($consulta) == 0){  //no existe ese usuario en la BD
                                     mysqli_query($enlace, "INSERT INTO Usuario(Nombre,Apellidos,Telefono,email,username, contrasena, esAdmin) VALUES ('$nombre','$apellido','$telefono','$email','$username','$password', '0')");
                                     echo '<script language="javascript">alert("Registrado con exito.");</script>';
                                 }

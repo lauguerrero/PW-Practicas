@@ -29,24 +29,34 @@
                 <input type="submit" value="Acceder">
 
                 <?php
-                    $enlace = mysqli_connect ("db4free.net", "adminpw","adminPW123" ,"thereuseshop");
+                    // Conexion con el servidor
+                    $servername = "db4free.net";
+                    $username = "adminpw";
+                    $password = "adminPW123";
+                    $dbname = "thereuseshop";
+                    // Crea la conexion
+                    $enlace = mysqli_connect($servername, $username, $password, $dbname);
                     
-                    $usuario = $_POST('usuario');
-                    $pwd = $_POST('pwd');
-                    $consulta = mysqli_query ($enlace, "SELECT * FROM Usuario WHERE username = '$usuario' and contrasena = '$pwd'");
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if(empty($_POST['usuario'])||empty($_POST['pwd'])){
+                            echo '<script language="javascript">alert("Uno de los campos esta vacío, por favor rellenalos todos.");</script>';
+                        }
+                        else{
+                            $usuario = $_POST['usuario'];
+                            $pwd = md5($_POST['pwd']);
+                            $consulta = mysqli_query($enlace, "SELECT * FROM Usuario WHERE username = '$usuario' and contrasena = '$pwd'");
+                            if(mysqli_num_rows($consulta) === 1){ //usuario y contraseña validos
+                                $reg = mysqli_fetch_array($consulta);
+                                session_start();
+                                $_SESSION['id'] = $reg['Id_user'];
 
-                    if(mysqli_num_rows($consulta) != 0){ //usuario y contraseña validos
-                        session_start();
-                        session_register("autentificado");
-                        $autentificado = "SI";
-                        
+                                header("location: Anuncios.php");
+                            }
+                            else{
+                                echo '<script language="javascript">alert("El usuario o contraseña son incorrectos. Intentelo de nuevo.");</script>';
+                            }
+                        }
                     }
-                    else{
-                        echo "El usuario o contraseña son incorrectos. Intentelo de nuevo.";
-                    }
-                    mysqli_free_result($consulta);
-                    mysqli_close();
-
                 ?>
             </form>
         </section>
