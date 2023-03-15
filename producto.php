@@ -29,13 +29,10 @@
         $id = 4;
 
         // Comprobar si se han recibido datos
-        /*if(isset($_GET['Id_Articulo'])){
+        if(isset($_GET['Id_Articulo'])){
             // Asignar los valores recibidos a variables
             $id = $_GET['Id_Articulo'];
-            
-            // Mostrar los datos recibidos
-            echo 'Id_Articulo: ' . $id . '<br>';
-        }*/
+        }
 
         $sql = "SELECT * FROM Articulo WHERE Id_Articulo = $id";
         $sentencia = mysqli_query($conn, $sql);
@@ -49,12 +46,11 @@
     ?>
 
     <table>
-
         <?php
             echo "<tr class = uno>";
                 
                 echo "<td>";
-                    echo $articulo['Imagen'];
+                    echo '<img height="300" width="250" src="'.$articulo['Imagen'].'">';
                 echo "</td>";
 
                 echo "<td rowspan = 2>";
@@ -70,19 +66,6 @@
             echo "</tr>";
 
             echo "<tr>";
-                $id = 4;
-
-                // Comprobar si se han recibido datos
-                /*if(isset($_GET['Id_Articulo'])){
-                    // Asignar los valores recibidos a variables
-                    $id = $_GET['Id_Articulo'];
-                    
-                    // Mostrar los datos recibidos
-                    echo 'Id_Articulo: ' . $id . '<br>';
-                }*/
-        
-                $sql = "SELECT * FROM Articulo WHERE Id_Articulo = $id";
-                $sentencia = mysqli_query($conn, $sql);
                 if(!$sentencia){
                     echo 'Hay un error en la sentencia SQL: ' .$sql;
                 }
