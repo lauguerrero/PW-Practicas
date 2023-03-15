@@ -31,12 +31,14 @@
         <div class="table-container">
             <table class='anuncios'>
                 <?php
+                    session_start();
+
                     $servername = "db4free.net";
                     $username = "adminpw";
                     $password = "adminPW123";
                     $dbname = "thereuseshop";
 
-                    $logged_user = "1"; #Supuesto ID del usuario loggeado
+                    $logged_user = $_SESSION['id']; #Supuesto ID del usuario loggeado
     
                     $conexion = mysqli_connect($servername, $username, $password, $dbname) or die ("No se puede conectar con el servidor");
     

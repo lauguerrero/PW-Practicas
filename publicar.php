@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    $logged_user = $_SESSION['id'];
+
     // Conexion con el servidor
     $servername = "db4free.net";
     $username = "adminpw";
@@ -36,7 +39,7 @@
 
             if(extensionFoto($path_filename_ext)){
                 move_uploaded_file($temp_name,$path_filename_ext);
-                $sql = "INSERT INTO Articulo (id_Usuario, Nombre, Tematica, Precio, Descripcion, Estado, Imagen) VALUES ('1', '$nombre', '$tematica', '$precio', '$descripcion', '$estado', '$path_filename_ext')";
+                $sql = "INSERT INTO Articulo (id_Usuario, Nombre, Tematica, Precio, Descripcion, Estado, Imagen) VALUES ('$logged_user', '$nombre', '$tematica', '$precio', '$descripcion', '$estado', '$path_filename_ext')";
                 //Instrucciones de insercion en la base de datos
                 mysqli_query ($conn, $sql);
             }
