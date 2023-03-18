@@ -41,10 +41,14 @@
                 move_uploaded_file($temp_name,$path_filename_ext);
                 $sql = "INSERT INTO Articulo (id_Usuario, Nombre, Tematica, Precio, Descripcion, Estado, Imagen) VALUES ('$logged_user', '$nombre', '$tematica', '$precio', '$descripcion', '$estado', '$path_filename_ext')";
                 //Instrucciones de insercion en la base de datos
-                mysqli_query ($conn, $sql);
+                if(mysqli_query ($conn, $sql)){
+                    header("location: Anuncios.php");
+                } else {
+                    echo "Error al insertar el registro: " . mysqli_error($conn);
+                }
             }
         }
     }
 
     mysqli_close($conn);
-?>
+?> 

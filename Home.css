@@ -1,0 +1,48 @@
+body {
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #2ecc71;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.btn1 {
+    display: inline-block;
+    background-color: #27ae60;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.btn1:hover {
+    background-color: #21995c;
+}
+
+/* Estilos para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    .btn1 {
+        font-size: 16px;
+    }
+}

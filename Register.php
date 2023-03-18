@@ -8,7 +8,7 @@
     <meta name="description" content="Compra articulos de segunda mano">
     <title>TheReUseShop</title>
 
-    <link href="styles/home.css" .css” rel="stylesheet" type="text/css">
+    <link href="Register.css" .css” rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
                                 $consulta = mysqli_query($enlace,"SELECT * FROM Usuario WHERE username='$username'");
                                 if(mysqli_num_rows($consulta) == 0){  //no existe ese usuario en la BD
                                     mysqli_query($enlace, "INSERT INTO Usuario(Nombre,Apellidos,Telefono,email,username, contrasena, esAdmin) VALUES ('$nombre','$apellido','$telefono','$email','$username','$password', '0')");
-                                    echo '<script language="javascript">alert("Registrado con exito.");</script>';
+                                    header("location: Login.php");
                                 }
                                 else{
                                     echo '<script language="javascript">alert("El usuario ya existe.");</script>'; 

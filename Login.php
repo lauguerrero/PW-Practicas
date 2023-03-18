@@ -8,7 +8,7 @@
     <meta name="description" content="Compra articulos de segunda mano">
     <title>TheReUseShop</title>
 
-    <link href="styles/home.css" .css” rel="stylesheet" type="text/css">
+    <link href="Login.css" .css” rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -50,7 +50,12 @@
                                 session_start();
                                 $_SESSION['id'] = $reg['Id_Usuario'];
 
-                                header("location: Anuncios.php");
+                                if($reg["esAdmin"]){
+                                    header("location: Admin_menu.html");
+                                }
+                                else{
+                                    header("location: Anuncios.php");
+                                }
                             }
                             else{
                                 echo '<script language="javascript">alert("El usuario o contraseña son incorrectos. Intentelo de nuevo.");</script>';

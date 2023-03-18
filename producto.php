@@ -25,9 +25,6 @@
 <h1>Mostrar Producto</h1>
 
     <?php
-
-        $id = 4;
-
         // Comprobar si se han recibido datos
         if(isset($_GET['Id_Articulo'])){
             // Asignar los valores recibidos a variables
@@ -37,51 +34,39 @@
         $sql = "SELECT * FROM Articulo WHERE Id_Articulo = $id";
         $sentencia = mysqli_query($conn, $sql);
         if(!$sentencia){
-            echo 'Hay un error en la sentencia SQL: ' .$sql;
+            echo 'Hay un error en la sentencia SQL: ' . mysqli_error($conn);
         }
         else{
-            $articulo = mysqli_fetch_array($sentencia);
-        }
-
-    ?>
-
-    <table>
-        <?php
-            echo "<tr class = uno>";
+            while($articulo = mysqli_fetch_array($sentencia)){
+                echo "<table>";
+                echo "<tr class = uno>";
                 
-                echo "<td>";
-                    echo '<img height="300" width="250" src="'.$articulo['Imagen'].'">';
-                echo "</td>";
+                    echo "<td>";
+                        echo '<img height="300" width="250" src="'.$articulo['Imagen'].'">';
+                    echo "</td>";
 
-                echo "<td rowspan = 2>";
-                    echo $articulo['Nombre'];
-                    echo "<br>";
-                    echo "<br>";
-                    echo 'Categoria: ' . $articulo['Tematica'];
-                    echo "<br>";
-                    echo "<br>";
-                    echo 'Precio: '. $articulo['Precio'] . '€';
-                echo "</td>";
+                    echo "<td rowspan = 2>";
+                        echo $articulo['Nombre'];
+                        echo "<br>";
+                        echo "<br>";
+                        echo 'Categoria: ' . $articulo['Tematica'];
+                        echo "<br>";
+                        echo "<br>";
+                        echo 'Precio: '. $articulo['Precio'] . '€';
+                    echo "</td>";
                 
-            echo "</tr>";
+                echo "</tr>";
 
-            echo "<tr>";
-                if(!$sentencia){
-                    echo 'Hay un error en la sentencia SQL: ' .$sql;
-                }
-                else{
-                    $articulo = mysqli_fetch_array($sentencia);
-                }
-    
-                echo "<td>";
-                    echo $articulo['Descripcion'];
-                echo "</td>";
+                echo "<tr>";
+                    echo "<td>";
+                        echo $articulo["Descripcion"];
+                    echo "</td>";
             
-            echo"</tr>";
-
-        ?>
-
-    </table>
+                echo"</tr>";
+                echo "</table>";
+            }
+        }
+    ?>
 
 </body>
 </html>
