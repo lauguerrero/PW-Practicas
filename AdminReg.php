@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <h1>The TheReUseShop</h1>
+        <h1>TheReUseShop</h1>
         <h2>Segundas oportunidades para objetos únicos</h2>
 
         <section>

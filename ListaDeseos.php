@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <button class="publicar" style="float:right;">Publicar</button>
+                <button class="publicar" style="float:right;"><a class="publicar" href="./publicar.html">Publicar</a></button>
             </div>
         </div>
 
