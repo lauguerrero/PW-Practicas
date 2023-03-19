@@ -19,7 +19,7 @@
                 <div class="dropdown-content" style="float:left;">
                     <a href="#">Mi Perfil</a> <!-- Habría que añadir el enlace a la página del perfil -->
                     <a href="./ListaDeseos.php">Lista Deseos</a> <!-- Habría que añadir el enlace a la página de la lista de deseos -->
-                    <a href="#" style="color: red">Cerrar Sesión</a> <!-- Habría que añadir el enlace para cerrar sesión -->
+                    <a href="./Home.html" style="color: red">Cerrar Sesión</a> <!-- Habría que añadir el enlace para cerrar sesión -->
                 </div>
             </div>
 
