@@ -9,7 +9,16 @@
             <div class="searchbar" style="float:left;">
                 <form method="post"> 
                     <input class="buscar" type="search" id="query" name="q" size="50" placeholder="Buscar artículos...">
-                    <button class="buscar">Filtros</button>
+                    <select name = "Filtro">
+                        <option selected>Categoria</option>
+                        <option>Deporte y ocio</option>
+                        <option>Electronica</option>
+                        <option>Moda y accesorios</option>
+                        <option>Inmobiliaria</option>
+                        <option>Libros</option>
+                        <option>Coleccionismo</option>
+                        <option>Otros</option>
+                    </select>
                     <button class="buscar" type="submit" name="boton-buscar">Buscar</button>
                 </form>
             </div>
@@ -17,9 +26,9 @@
             <div class="dropdown" style="float:right;">
                 <button class="userbtn">Usuario</button>
                 <div class="dropdown-content" style="float:left;">
-                    <a href="./Perfil.php">Mi Perfil</a> <!-- Habría que añadir el enlace a la página del perfil -->
-                    <a href="./ListaDeseos.php">Lista Deseos</a> <!-- Habría que añadir el enlace a la página de la lista de deseos -->
-                    <a href="./Home.html" style="color: red">Cerrar Sesión</a> <!-- Habría que añadir el enlace para cerrar sesión -->
+                    <a href="./Perfil.php">Mi Perfil</a>
+                    <a href="./ListaDeseos.php">Lista Deseos</a>
+                    <a href="./Home.html" style="color: red">Cerrar Sesión</a>
                 </div>
             </div>
 
@@ -52,8 +61,11 @@
                             }else{ #En este caso significa que queremos añadir el archivo a la lista de deseos
                                 mysqli_query($conexion, "insert into Deseos values($logged_user, $id_articulo_deseos)");
                             }
-                        }elseif(isset($_POST['boton-buscar']) && isset($_POST['q']) && ($_POST['q'] != "")){ #Cuando queremos buscar un artículo
+                        }elseif(isset($_POST['boton-buscar'])){ #Cuando queremos buscar un artículo
                             $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Nombre like "%'.$_POST["q"].'%"') or die ("Fallo en la consulta de Articulos");
+                            if($_POST["Filtro"] != 'Categoria'){
+                                $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Tematica like "%'.$_POST["Filtro"].'%"') or die ("Fallo en la consulta de Articulos");
+                            }
                         }
                     }
 
