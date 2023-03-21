@@ -33,11 +33,12 @@
 
         $sql = "SELECT * FROM Articulo WHERE Id_Articulo = $id";
         $sentencia = mysqli_query($conn, $sql);
+
         if(!$sentencia){
             echo 'Hay un error en la sentencia SQL: ' . mysqli_error($conn);
         }
         else{
-            while($articulo = mysqli_fetch_array($sentencia)){
+            $articulo = mysqli_fetch_array($sentencia);
                 echo "<table>";
                 echo "<tr class = uno>";
                 
@@ -53,6 +54,12 @@
                         echo "<br>";
                         echo "<br>";
                         echo 'Precio: '. $articulo['Precio'] . '€';
+                        echo "<br>";
+                        echo "<br>";
+                        $sql2 = 'SELECT Telefono FROM Usuario WHERE Id_Usuario ='. $articulo["id_Usuario"];
+                        $sentencia2 = mysqli_query($conn, $sql2);
+                        $usu = mysqli_fetch_array($sentencia2);
+                        echo 'Telefono Contacto: '  .$usu['Telefono'];
                     echo "</td>";
                 
                 echo "</tr>";
@@ -64,7 +71,6 @@
             
                 echo"</tr>";
                 echo "</table>";
-            }
         }
     ?>
 

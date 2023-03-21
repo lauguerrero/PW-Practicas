@@ -76,6 +76,7 @@
             $sql1 = "DELETE FROM Usuario WHERE Id_Usuario = $id";
             $sql2 = "DELETE FROM Articulo WHERE id_Usuario = $id";
             $sql3 = "DELETE FROM Deseos WHERE id_Usuario = $id";
+            //$sql4 = "SELECT Id_Articulo FROM Articulo WHERE id_Usuario = $id";
             if(mysqli_query($conn, $sql3) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql1)){
                 header("Location: ListaUsu.php");
             }else {
