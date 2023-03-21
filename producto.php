@@ -1,5 +1,8 @@
 <?php
 
+    session_start();
+    $logged_user = $_SESSION['id'];
+
     $servername = "db4free.net";
     $username = "adminpw";
     $password = "adminPW123";
@@ -25,10 +28,22 @@
 <h1>Mostrar Producto</h1>
 
     <?php
-        // Comprobar si se han recibido datos
+        // Comprobar si se han recibido datos mediate GET
         if(isset($_GET['Id_Articulo'])){
             // Asignar los valores recibidos a variables
             $id = $_GET['Id_Articulo'];
+        }
+
+        // Comprobar si se han recibido datos mediante POST
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            if(isset($_POST["Id_Articulo"])){ // Cuando queremos reservar o cancelar la reserva de un artículo
+                $id_articulo=$_POST["Id_Articulo"];
+                if($_POST["reserva"] == 'delete'){ #En este caso significa que queremos cancelar la reserva el producto
+                    mysqli_query($conn, "UPDATE Articulo SET id_UReserva=NULL WHERE Id_Articulo=$id_articulo");
+                }else if($_POST["reserva"] == 'add'){ #En este caso significa que queremos reservar el producto
+                    mysqli_query($conn, "UPDATE Articulo SET id_UReserva=$logged_user WHERE Id_Articulo=$id_articulo");
+                }
+            }
         }
 
         $sql = "SELECT * FROM Articulo WHERE Id_Articulo = $id";
@@ -71,6 +86,20 @@
             
                 echo"</tr>";
                 echo "</table>";
+                echo "<br>";
+
+                echo '<form method="post">';
+                echo '<div style="text-align:center;">';
+                echo '<input type="hidden" name="Id_Articulo" value="'.$articulo['Id_Articulo'].'">';
+                if($articulo['id_UReserva'] == $logged_user){
+                    echo '<button type="submit" class="add-reserva" name="reserva" value="delete">Ya lo tienes reservado</button>';
+                }else if($articulo['id_UReserva'] != NULL){
+                    echo '<button type="submit" class="add-reserva" name="reserva" value="null">Reservado</button>';
+                }else{
+                    echo '<button type="submit" class="add-reserva" name="reserva" value="add">Reservar</button>';
+                }
+                echo '</div>';
+                echo '</form>';
         }
     ?>
 
