@@ -65,7 +65,7 @@
                         }elseif(isset($_POST['boton-buscar'])){ #Cuando queremos buscar un artículo
                             $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Nombre like "%'.$_POST["q"].'%"') or die ("Fallo en la consulta de Articulos");
                             if($_POST["Filtro"] != 'Categoria'){
-                                $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Tematica like "%'.$_POST["Filtro"].'%"') or die ("Fallo en la consulta de Articulos");
+                                $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Tematica like "%'.$_POST["Filtro"].'%" and Id_Articulo in (select Id_Articulo from Articulo where Nombre like "%'.$_POST["q"].'%")') or die ("Fallo en la consulta de Articulos");
                             }
                         }
                     }
