@@ -1,25 +1,16 @@
 <html>
     <head>
-        <title>Anuncios</title>
+        <title>Lista de Reservas</title>
         <link rel="stylesheet" href="Anuncios.css">
     </head>
 
     <body>
         <div class="upperbar-container">
             <div class="searchbar" style="float:left;">
-                <form method="post"> 
+                <form id="form"> 
                     <input class="buscar" type="search" id="query" name="q" size="50" placeholder="Buscar artículos...">
-                    <select name = "Filtro">
-                        <option selected>Categoria</option>
-                        <option>Deporte y ocio</option>
-                        <option>Electronica</option>
-                        <option>Moda y accesorios</option>
-                        <option>Inmobiliaria</option>
-                        <option>Libros</option>
-                        <option>Coleccionismo</option>
-                        <option>Otros</option>
-                    </select>
-                    <button class="buscar" type="submit" name="boton-buscar">Buscar</button>
+                    <button class="buscar">Filtros</button>
+                    <button class="buscar" type="submit">Buscar</button>
                 </form>
             </div>
 
@@ -52,23 +43,17 @@
     
                     $conexion = mysqli_connect($servername, $username, $password, $dbname) or die ("No se puede conectar con el servidor");
     
-                    $consulta_articulos = mysqli_query($conexion, "select * from Articulo") or die ("Fallo en la consulta de Articulos");
-
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
-                        if(isset($_POST["Id_Articulo"])){ #Cuando queremos añadir o eliminar un articulo de la lista de deseos
-                            $id_articulo_deseos=$_POST["Id_Articulo"];
-                            if($_POST["add-listadeseados"] == 'delete'){ #En este caso significa que queremos eliminar el archivo de la lista de deseos
-                                mysqli_query($conexion, "delete from Deseos where id_Articulo=$id_articulo_deseos and id_Usuario=$logged_user");
-                            }else{ #En este caso significa que queremos añadir el archivo a la lista de deseos
-                                mysqli_query($conexion, "insert into Deseos values($logged_user, $id_articulo_deseos)");
-                            }
-                        }elseif(isset($_POST['boton-buscar'])){ #Cuando queremos buscar un artículo
-                            $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Nombre like "%'.$_POST["q"].'%"') or die ("Fallo en la consulta de Articulos");
-                            if($_POST["Filtro"] != 'Categoria'){
-                                $consulta_articulos = mysqli_query($conexion, 'select * from Articulo where Tematica like "%'.$_POST["Filtro"].'%"') or die ("Fallo en la consulta de Articulos");
-                            }
+                        $id_articulo_deseos=$_POST["Id_Articulo"];
+                        if($_POST["add-listadeseados"] == 'delete'){ #En este caso significa que queremos eliminar el archivo de la lista de deseos
+                            mysqli_query($conexion, "delete from Deseos where id_Articulo=$id_articulo_deseos and id_Usuario=$logged_user");
+                        }else{ #En este caso significa que queremos añadir el archivo a la lista de deseos
+                            mysqli_query($conexion, "insert into Deseos values($logged_user, $id_articulo_deseos)");
                         }
                     }
+
+                    #Obtenemos la información de los artículos reservados del usuario loggeado
+                    $consulta_articulos = mysqli_query($conexion, "select * from Articulo where id_UReserva=$logged_user") or die ("Fallo en la consulta de Articulos");
 
                     #Obtenemos la lista de deseos del usuario loggeado
                     $consulta_deseos = mysqli_query($conexion, "select id_Articulo from Deseos where id_Usuario=$logged_user") or die("Fallo en la consulta de Deseos");

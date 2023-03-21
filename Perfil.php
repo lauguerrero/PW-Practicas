@@ -81,8 +81,8 @@
         }
     }
 
-    echo "<h3>Tus articulos publicados</h3>";
     echo "<br>";
+    echo "<h3>Tus articulos publicados</h3>";
     echo "<div class=table-container> ";
             echo"<table class=anuncios>";
                 #Obtenemos la información de los artículos que ha publicado el usuario
@@ -104,6 +104,11 @@
                     echo '<form action="producto.php" method="get"><input type="hidden" name="Id_Articulo" value="'.$fila['Id_Articulo'].'"><input type="image" alt="Submit" class="imagen-anuncio" height="300" width="250" src="'.$fila['Imagen'].'">'; #Insertamos la imagen con el hipervínculo a la página del anuncio
                     echo '<br>';
                     echo '<button type="submit" class="texto-anuncio"><div class="texto-anuncio" align="center">'.$fila['Nombre'].' - '.$fila['Precio'].'€</div></button></form>'; #Insertamos el nombre y el precio con el hipervínculo a la página del anuncio
+                    if($fila['id_UReserva'] != NULL){
+                        echo 'Reservado';
+                    }else{
+                        echo 'No reservado';
+                    }
                     echo '</div></td>';
                 }
            echo"</table>";

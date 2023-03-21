@@ -17,9 +17,10 @@
             <div class="dropdown" style="float:right;">
                 <button class="userbtn">Usuario</button>
                 <div class="dropdown-content" style="float:left;">
-                    <a href="./Perfil.php">Mi Perfil</a> <!-- Habría que añadir el enlace a la página del perfil -->
-                    <a href="./ListaDeseos.php">Lista Deseos</a> <!-- Habría que añadir el enlace a la página de la lista de deseos -->
-                    <a href="./Home.html" style="color: red">Cerrar Sesión</a> <!-- Habría que añadir el enlace para cerrar sesión -->
+                    <a href="./Perfil.php">Mi Perfil</a>
+                    <a href="./ListaDeseos.php">Lista Deseos</a>
+                    <a href="./ListaReservas.php">Lista Reservas</a>
+                    <a href="./Home.html" style="color: red">Cerrar Sesión</a>
                 </div>
             </div>
 
@@ -38,7 +39,7 @@
                     $password = "adminPW123";
                     $dbname = "thereuseshop";
 
-                    $logged_user = $_SESSION['id']; #Supuesto ID del usuario loggeado
+                    $logged_user = $_SESSION['id'];
     
                     $conexion = mysqli_connect($servername, $username, $password, $dbname) or die ("No se puede conectar con el servidor");
     

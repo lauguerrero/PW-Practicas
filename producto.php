@@ -91,10 +91,12 @@
                 echo '<form method="post">';
                 echo '<div style="text-align:center;">';
                 echo '<input type="hidden" name="Id_Articulo" value="'.$articulo['Id_Articulo'].'">';
-                if($articulo['id_UReserva'] == $logged_user){
+                if($articulo['id_Usuario'] == $logged_user){
+                    //Si el usuario loggeado es el que publicó el anuncio no le aparece botón para reservar
+                }else if($articulo['id_UReserva'] == $logged_user){
                     echo '<button type="submit" class="add-reserva" name="reserva" value="delete">Ya lo tienes reservado</button>';
                 }else if($articulo['id_UReserva'] != NULL){
-                    echo '<button type="submit" class="add-reserva" name="reserva" value="null">Reservado</button>';
+                    echo '<button type="button" class="add-reserva" name="reserva" value="null">Reservado</button>';
                 }else{
                     echo '<button type="submit" class="add-reserva" name="reserva" value="add">Reservar</button>';
                 }
