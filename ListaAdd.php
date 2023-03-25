@@ -86,7 +86,7 @@
     ?>
 
     <h2>INSERTAR ARTICULO</h2>
-    <a href = "publicar.html">Anadir nuevo Articulo</a>
+    <a href = "adminpubli.html">Anadir nuevo Articulo</a>
 
 
 </body>

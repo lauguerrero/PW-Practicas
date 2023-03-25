@@ -42,7 +42,7 @@
                 $sql = "INSERT INTO Articulo (id_Usuario, Nombre, Tematica, Precio, Descripcion, Estado, Imagen) VALUES ('$logged_user', '$nombre', '$tematica', '$precio', '$descripcion', '$estado', '$path_filename_ext')";
                 //Instrucciones de insercion en la base de datos
                 if(mysqli_query ($conn, $sql)){
-                    header("location: Anuncios.php");
+                    header("location: ListaAdd.php");
                 } else {
                     echo "Error al insertar el registro: " . mysqli_error($conn);
                 }

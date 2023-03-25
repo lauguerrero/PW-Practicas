@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Publicar Articulo</title>
+    <link href="publicar.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <h1>PULICACION</h1>
+    
+    <form action = "publicar_admin.php" method = "post" enctype="multipart/form-data">
+
+        <p>Nombre del Articulo: <input type = "text" name = "nombre" size = "40"></p>
+        
+        Tematica:
+        <select name="tematica">
+            <option>Deporte y ocio</option>
+            <option>Electronica</option>
+            <option>Moda y accesorios</option>
+            <option>Inmobiliria</option>
+            <option>Libros</option>
+            <option>Coleccionismo</option> 
+            <option>Otros</option> 
+        </select>
+
+        <p>Precio: <input type = "number" name = "precio"></p>
+        
+        <!--<p>Descripción: <input type = "text" name = "descripcion" size = "50" maxlength = "200"></p>-->
+        <p>Descripcion:</p>
+        <textarea name="descripcion" id="" size ="100" maxlength="300"></textarea>
+        <br>
+
+        Estado:
+        <select name="estado">
+            <option>Malo</option>
+            <option>Aceptable</option>
+            <option>Bueno</option>
+            <option>Como Nuevo</option>
+        </select>
+
+        <!--<p>Imagen: <input type = "text" name = "imagen"></p>-->
+        <p>Imagen: <input type = "file" name = "imagen"></p>
+
+        <input type = "submit" value = "Enviar">
+
+    </form>  
+
+</body>
+</html>
