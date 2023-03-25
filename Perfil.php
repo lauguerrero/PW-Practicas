@@ -26,6 +26,7 @@
 <body>
 
 <?php
+    include("header.php");
     
     $sql = "SELECT * FROM Usuario WHERE Id_Usuario = '$logged_user'";
     $sentencia = mysqli_query($conn, $sql);
@@ -34,7 +35,7 @@
     }
     else{
         while($usuario = mysqli_fetch_array($sentencia)){
-            echo"<h1>Bienvenido a tu perfil ".$usuario['Nombre']."</h1>";
+            echo"<h2>Bienvenido a tu perfil ".$usuario['Nombre']."</h2>";
             echo "<h3>Tu informacion</h3>";
             echo "<br>";
             echo"<form action=Perfil.php method=post>";

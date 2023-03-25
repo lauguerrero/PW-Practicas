@@ -3,7 +3,7 @@ body {
 }
 
 header {
-    background-color: #2ecc71;
+    background-color: #4ea93b;
     color: #ffffff;
     text-align: center;
     padding: 20px;
@@ -21,7 +21,7 @@ h2 {
 
 .btn1 {
     display: inline-block;
-    background-color: #27ae60;
+    background-color: #71c55b;
     color: #ffffff;
     padding: 10px 20px;
     text-decoration: none;
@@ -31,7 +31,7 @@ h2 {
 }
 
 .btn1:hover {
-    background-color: #21995c;
+    background-color: #005c00;
 }
 
 /* Estilos para pantallas pequeñas */

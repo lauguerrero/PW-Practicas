@@ -5,6 +5,10 @@
     </head>
 
     <body>
+        <?php
+            include("header.php");
+        ?>
+
         <div class="upperbar-container">
             <div class="searchbar" style="float:left;">
                 <form method="post"> 

@@ -8,7 +8,7 @@ body {
   
   /* Estilos del encabezado */
   header {
-    background-color: #7dc242; /* Fondo verde oscuro */
+    background-color: #4ea93b; /* Fondo verde oscuro */
     color: white;
     padding: 20px;
   }
@@ -25,7 +25,7 @@ body {
   
   /* Estilos del formulario */
   form {
-    background-color: green; /* Fondo verde claro */
+    background-color: #008800; /* Fondo verde claro */
     padding: 20px;
     border-radius: 10px;
   }
@@ -49,7 +49,7 @@ body {
   }
   
   input[type="submit"] {
-    background-color: #7dc242; /* Fondo verde oscuro */
+    background-color: #71c55b; /* Fondo verde oscuro */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -58,6 +58,6 @@ body {
   }
   
   input[type="submit"]:hover {
-    background-color: #357a38; /* Fondo verde medio */
+    background-color: #005c00; /* Fondo verde medio */
   }
   

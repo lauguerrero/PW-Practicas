@@ -25,6 +25,10 @@
 </head>
 <body>
 
+<?php
+    include("header.php");
+?>
+
 <h1>Mostrar Producto</h1>
 
     <?php
