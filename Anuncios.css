@@ -1,0 +1,135 @@
+/* Container de la tabla con los anuncios */
+.table-container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+/* Estilo de la tabla que tendrá todos los anuncios */
+table.anuncios {
+    border-spacing: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo de cada imagen dentro de la tabla con los anuncios */
+.imagen-anuncio {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #005c00;
+}
+
+/* Estilo del texto debajo de cada imagen de la tabla con los anuncios */
+button.texto-anuncio {
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+/* Estilo del texto debajo de cada imagen de la tabla con los anuncios */
+div.texto-anuncio {
+    font-size: 20px;
+    text-decoration: none;
+    color: #005c00;
+}
+
+/* Container del botón para añadir a la lista de deseados */
+div.add-listadeseados-container {
+    position:relative;
+}
+
+/* Estilo del botón para añadir a la lista de deseados */
+.add-listadeseados {
+    position:absolute;
+    left: 5px;
+    top: 5px;
+    background-color:#4ea93b;
+    border: 1px solid #005c00;
+    color: white;
+}
+
+/* Estilo del botón para publicar un anuncio nuevo */
+button.publicar {
+    background-color: #4ea93b;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+    margin-right: 5px;
+    text-decoration:none;
+}
+
+a.publicar {
+    color: white;
+    font-size: 16px;
+    text-decoration:none;
+}
+
+/* Container de la barra superior */
+.upperbar-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Estilo de la barra de búsqueda superior */
+input.buscar {
+    width: 500px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* Estilo de los botones para la búsqueda */
+button.buscar {
+    background-color: #4ea93b;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* Botón usuario */
+.userbtn {
+    background-color: #4ea93b;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: 92e27a;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #92e27a;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #71c55b;}

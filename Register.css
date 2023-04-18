@@ -1,0 +1,63 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E9F5E9; /* Fondo verde claro */
+  }
+  
+  /* Estilos del encabezado */
+  header {
+    background-color: #4ea93b; /* Fondo verde oscuro */
+    color: white;
+    padding: 20px;
+  }
+  
+  h1 {
+    margin-top: 0;
+    font-size: 40px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  
+  /* Estilos del formulario */
+  form {
+    background-color: #008800; /* Fondo verde claro */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  input[type="submit"] {
+    background-color: #71c55b; /* Fondo verde oscuro */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #005c00; /* Fondo verde medio */
+  }
+  
